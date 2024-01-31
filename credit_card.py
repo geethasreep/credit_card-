@@ -46,3 +46,29 @@ credit_dummies.head()
 credit_dummies.columns
 credit_dummies.info()
 credit_dummies.describe()
+
+def plotDistPlot(col):
+    """Flexibly plot a univariate distribution of observation"""
+    sns.distplot(col)
+    plt.show()
+plotDistPlot(credit_drop['Age'])
+plotDistPlot(credit_drop['PriorDefault'])
+plotDistPlot(credit_drop['Debt'])
+plotDistPlot(credit_drop['CreditScore'])
+plotDistPlot(credit_drop['BankCustomer'])
+plotDistPlot(credit_drop['YearsEmployed'])
+plotDistPlot(credit_drop['Income'])
+plt.savefig('Distribution.jpeg')
+
+#correlation matrix
+corr = credit_drop.corr()
+f, ax = plt.subplots(figsize=(12, 9))
+sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values)
+plt.savefig('corelation.jpg')
+
+#scatterplot
+sns.set()
+cols = ['Age', 'Debt', 'BankCustomer','YearsEmployed','PriorDefault','CreditScore','Income']
+sns.pairplot(credit_drop[cols], size = 2.5)
+plt.show();
+plt.savefig('scatterplot.jpg')
